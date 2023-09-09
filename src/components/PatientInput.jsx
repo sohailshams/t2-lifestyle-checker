@@ -32,46 +32,51 @@ function PatientInput() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-y-5 mt-10">
-      <label className="flex justify-center">
-        <span className="w-[145px]">Enter NHS Number:</span>
+    <div className="flex justify-center items-center h-[600px]">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-y-10 mt-10 border p-20 shadow-xl"
+      >
+        <label className="flex justify-center">
+          <span className="w-[145px]">Enter NHS Number:</span>
+          <input
+            className="pl-3 ml-3 py-1 bg-slate-100"
+            type="text"
+            name="nhs_number"
+            placeholder="NHS Number"
+            value={patientInputData.nhs_number}
+            onChange={handleChange}
+          />
+        </label>
+        <label className="flex justify-center">
+          <span className="w-[150px]">Patient's Surname:</span>
+          <input
+            className="pl-3 ml-3 py-1 bg-slate-100"
+            type="text"
+            name="surname"
+            placeholder="Shams"
+            value={patientInputData.surname}
+            onChange={handleChange}
+          />
+        </label>
+        <label className="flex justify-center">
+          <span className="w-[150px]">Patient's DOB:</span>
+          <input
+            className="pl-3 ml-3 py-1 bg-slate-100"
+            type="text"
+            name="dob"
+            placeholder="Nov 25"
+            value={patientInputData.dob}
+            onChange={handleChange}
+          />
+        </label>
         <input
-          className="pl-3 ml-3 py-1 bg-slate-100"
-          type="text"
-          name="nhs_number"
-          placeholder="NHS Number"
-          value={patientInputData.nhs_number}
-          onChange={handleChange}
+          className="py-1 text-white bg-black mx-auto w-[425px]"
+          type="submit"
+          value="Submit"
         />
-      </label>
-      <label className="flex justify-center">
-        <span className="w-[150px]">Patient's Surname:</span>
-        <input
-          className="pl-3 ml-3 py-1 bg-slate-100"
-          type="text"
-          name="surname"
-          placeholder="Shams"
-          value={patientInputData.surname}
-          onChange={handleChange}
-        />
-      </label>
-      <label className="flex justify-center">
-        <span className="w-[150px]">Patient's DOB:</span>
-        <input
-          className="pl-3 ml-3 py-1 bg-slate-100"
-          type="text"
-          name="dob"
-          placeholder="Nov 25"
-          value={patientInputData.dob}
-          onChange={handleChange}
-        />
-      </label>
-      <input
-        className="py-1 text-white bg-black mx-auto w-[425px]"
-        type="submit"
-        value="Submit"
-      />
-    </form>
+      </form>
+    </div>
   );
 }
 
