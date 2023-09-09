@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import "./App.css";
 import { getPatient } from "./assets/api/api";
+import PatientInput from "./components/PatientInput";
+import Nav from "./components/Nav";
 
 function App() {
   useEffect(() => {
@@ -10,7 +12,8 @@ function App() {
   }, []);
   return (
     <>
-      <p className="underline text-red-500">T2 LifeStyle</p>
+      <Nav />
+      <PatientInput />
     </>
   );
 }
