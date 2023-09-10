@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { messageToPatient } from "../utils/utils";
 
-function PatientInput() {
+function PatientInput({ patientDbData }) {
   const [patientInputData, setPatientInputData] = useState({
     nhs_number: "",
     surname: "",
@@ -9,6 +10,7 @@ function PatientInput() {
   const [correctNhsNumber, setCorrectNhsNumber] = useState(false);
   const [correctSurname, setCorrectSurname] = useState(false);
   const [correctDob, setCorrectDob] = useState(false);
+  const [patientMessage, setPatientMessage] = useState("");
 
   const handleChange = (e) => {
     if (e.target.name === "nhs_number") {
@@ -100,6 +102,14 @@ function PatientInput() {
       dobEl.classList.remove("visible");
       dobEl.classList.add("invisible");
     }
+
+    const message = messageToPatient(patientInputData, patientDbData);
+    setPatientMessage(message);
+    setPatientInputData({
+      nhs_number: "",
+      surname: "",
+      dob: "",
+    });
   };
 
   return (
@@ -182,6 +192,7 @@ function PatientInput() {
           type="submit"
           value="Submit"
         />
+        <h1 className="text-center text-red-900 font-bold">{patientMessage}</h1>
       </form>
     </div>
   );
