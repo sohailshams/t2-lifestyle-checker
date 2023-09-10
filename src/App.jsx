@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "./App.css";
-import { getPatient } from "./assets/api/api";
+import { getPatient } from "./api/api";
 import PatientInput from "./components/PatientInput";
 import Nav from "./components/Nav";
 
