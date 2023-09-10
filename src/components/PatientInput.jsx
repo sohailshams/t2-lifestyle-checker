@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { messageToPatient } from "../utils/utils";
 
 function PatientInput({ patientDbData }) {
@@ -11,6 +12,7 @@ function PatientInput({ patientDbData }) {
   const [correctSurname, setCorrectSurname] = useState(false);
   const [correctDob, setCorrectDob] = useState(false);
   const [patientMessage, setPatientMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     if (e.target.name === "nhs_number") {
@@ -103,7 +105,10 @@ function PatientInput({ patientDbData }) {
       dobEl.classList.add("invisible");
     }
 
-    const message = messageToPatient(patientInputData, patientDbData);
+    const [istrue, message] = messageToPatient(patientInputData, patientDbData);
+    if (istrue) {
+      navigate("/questions");
+    }
     setPatientMessage(message);
     setPatientInputData({
       nhs_number: "",
