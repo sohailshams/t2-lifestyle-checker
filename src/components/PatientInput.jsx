@@ -76,12 +76,30 @@ function PatientInput() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(
-      "A name was submitted: " +
-        patientInputData.nhs_number +
-        patientInputData.surname +
-        patientInputData.dob
-    );
+    const nhsRequiredEl = document.getElementById("nhs-required");
+    const surnameEl = document.getElementById("surname-required");
+    const dobEl = document.getElementById("dob-required");
+    if (patientInputData.nhs_number === "" || patientInputData.nhs_number < 9) {
+      nhsRequiredEl.classList.remove("invisible");
+      nhsRequiredEl.classList.add("visible");
+    } else {
+      nhsRequiredEl.classList.remove("visible");
+      nhsRequiredEl.classList.add("invisible");
+    }
+    if (patientInputData.surname === "") {
+      surnameEl.classList.remove("invisible");
+      surnameEl.classList.add("visible");
+    } else {
+      surnameEl.classList.remove("visible");
+      surnameEl.classList.add("invisible");
+    }
+    if (patientInputData.dob === "") {
+      dobEl.classList.remove("invisible");
+      dobEl.classList.add("visible");
+    } else {
+      dobEl.classList.remove("visible");
+      dobEl.classList.add("invisible");
+    }
   };
 
   return (
@@ -105,6 +123,9 @@ function PatientInput() {
               value={patientInputData.nhs_number}
               onChange={handleChange}
             />
+            <span id="nhs-required" className="text-red-900 pl-1 invisible">
+              *Required
+            </span>
             <p id="nhs-message" className="invisible text-red-900 pl-3 pt-1">
               Please enter numbers only!
             </p>
@@ -125,6 +146,9 @@ function PatientInput() {
               value={patientInputData.surname}
               onChange={handleChange}
             />
+            <span id="surname-required" className="text-red-900 pl-1 invisible">
+              *Required
+            </span>
             <p id="surname" className="invisible text-red-900 pl-3 pt-1">
               Please enter words only!
             </p>
@@ -145,6 +169,9 @@ function PatientInput() {
               value={patientInputData.dob}
               onChange={handleChange}
             />
+            <span id="dob-required" className="text-red-900 pl-1 invisible">
+              *Required
+            </span>
             <p id="dob" className="invisible text-red-900 pl-3 pt-1">
               Please enter jul 01 DOB format!
             </p>
