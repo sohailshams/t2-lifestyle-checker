@@ -30,7 +30,10 @@ function Questions() {
 
   return (
     <div className="flex justify-center flex-col items-center h-[600px]">
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-y-3 mt-10 border p-20 shadow-xl"
+      >
         <div>
           <label className="mr-3">
             Q1. Do you drink on more than 2 days a week?
