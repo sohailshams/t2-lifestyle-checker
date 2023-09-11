@@ -1,18 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { messageToPatient } from "../utils/utils";
+import { getPatient } from "../api/api";
 
-function PatientInput({ patientDbData }) {
+function PatientInput() {
   const [patientInputData, setPatientInputData] = useState({
     nhs_number: "",
     surname: "",
     dob: "",
   });
+
+  const [patientDbData, setPatientDbData] = useState("");
   const [correctNhsNumber, setCorrectNhsNumber] = useState(false);
   const [correctSurname, setCorrectSurname] = useState(false);
   const [correctDob, setCorrectDob] = useState(false);
   const [patientMessage, setPatientMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
   const navigate = useNavigate();
+  useEffect(() => {
+    if (!isLoading) {
+      console.log("inside useEffect", isLoading);
+      const [istrue, message] = messageToPatient(
+        patientInputData,
+        patientDbData
+      );
+      if (istrue) {
+        navigate("/questions", { state: { age: patientDbData.age } });
+      }
+      setPatientMessage(message);
+      setPatientInputData({
+        nhs_number: "",
+        surname: "",
+        dob: "",
+      });
+    }
+  }, [isLoading]);
 
   const handleChange = (e) => {
     if (e.target.name === "nhs_number") {
@@ -105,16 +128,15 @@ function PatientInput({ patientDbData }) {
       dobEl.classList.add("invisible");
     }
 
-    const [istrue, message] = messageToPatient(patientInputData, patientDbData);
-    if (istrue) {
-      navigate("/questions", { state: { age: patientDbData.age } });
+    getPatient(parseInt(patientInputData.nhs_number))
+      .then((patient) => {
+        setIsLoading(false);
+        return setPatientDbData(patient);
+      })
+      .catch((err) => console.log(err.response.data.msg));
+    if (isLoading) {
+      setPatientMessage("Please wait!");
     }
-    setPatientMessage(message);
-    setPatientInputData({
-      nhs_number: "",
-      surname: "",
-      dob: "",
-    });
   };
 
   return (
@@ -193,7 +215,7 @@ function PatientInput({ patientDbData }) {
           </div>
         </label>
         <input
-          className="py-1 text-white bg-black mx-auto w-[425px]"
+          className="py-1 text-white bg-black w-[425px]"
           type="submit"
           value="Submit"
         />

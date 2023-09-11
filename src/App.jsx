@@ -7,20 +7,17 @@ import Nav from "./components/Nav";
 import Questions from "./components/Questions";
 
 function App() {
-  const [patientDbData, setPatientDbData] = useState({});
-  useEffect(() => {
-    getPatient(111222333)
-      .then((patient) => setPatientDbData(patient))
-      .catch((err) => console.log(err.response.data.msg));
-  }, []);
+  // const [patientDbData, setPatientDbData] = useState({});
+  // useEffect(() => {
+  //   getPatient(111222333)
+  //     .then((patient) => setPatientDbData(patient))
+  //     .catch((err) => console.log(err.response.data.msg));
+  // }, []);
   return (
     <>
       <Nav />
       <Routes>
-        <Route
-          path="/"
-          element={<PatientInput patientDbData={patientDbData} />}
-        />
+        <Route path="/" element={<PatientInput />} />
         <Route path="/questions" element={<Questions />} />
       </Routes>
     </>
