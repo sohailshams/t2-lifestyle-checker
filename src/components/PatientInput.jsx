@@ -132,7 +132,7 @@ function PatientInput() {
         setIsLoading(false);
         return setPatientDbData(patient);
       })
-      .catch((err) => console.log(err.response.data.msg));
+      .catch((err) => setPatientMessage(err.response.data.msg));
     if (isLoading) {
       setPatientMessage("Please wait!");
     }
