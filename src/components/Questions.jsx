@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import RadioInput from "./RadioInput";
+import { useLocation } from "react-router-dom";
+import { pointsCheck } from "../utils/utils";
 
 function Questions() {
   const [drink, setDrink] = useState("");
   const [smoke, setSmoke] = useState("");
   const [exercise, setExercise] = useState("");
   const [isError, setIsError] = useState(false);
+  const [result, setResult] = useState("");
+
+  const location = useLocation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,11 +18,18 @@ function Questions() {
       setIsError(true);
       return false;
     }
-    alert("Success");
+    const finalMessage = pointsCheck(
+      location.state.age,
+      drink,
+      smoke,
+      exercise
+    );
+    console.log("finalMessage", finalMessage);
+    setResult(finalMessage);
   };
 
   return (
-    <div className="flex justify-center items-center h-[600px]">
+    <div className="flex justify-center flex-col items-center h-[600px]">
       <form onSubmit={handleSubmit}>
         <div>
           <label className="mr-3">
@@ -71,6 +83,7 @@ function Questions() {
           />
         </div>
       </form>
+      <h1 className="mt-5 w-2/6 text-center py-3 px-5">{result}</h1>
     </div>
   );
 }
