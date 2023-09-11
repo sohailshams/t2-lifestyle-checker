@@ -20,7 +20,6 @@ function PatientInput() {
   const navigate = useNavigate();
   useEffect(() => {
     if (!isLoading) {
-      console.log("inside useEffect", isLoading);
       const [istrue, message] = messageToPatient(
         patientInputData,
         patientDbData

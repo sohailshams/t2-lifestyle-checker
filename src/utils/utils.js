@@ -57,7 +57,7 @@ export function pointsCheck(age, drink, smoke, exercise) {
   } else if (exercise === "no" && age >= 64) {
     total += 1;
   }
-  console.log("total", total);
+
   if (total <= 3) {
     return "Thank you for answering our questions, we don't need to see you at this time. Keep up the good work!";
   } else {

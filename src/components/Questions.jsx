@@ -24,7 +24,6 @@ function Questions() {
       smoke,
       exercise
     );
-    console.log("finalMessage", finalMessage);
     setResult(finalMessage);
   };
 

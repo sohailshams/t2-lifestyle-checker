@@ -9,5 +9,3 @@ export function getPatient(nhs_number) {
     .get(`/patients/${nhs_number}`)
     .then((res) => res.data.patient);
 }
-
-// .catch((err) => console.log(err.response.data.msg));
