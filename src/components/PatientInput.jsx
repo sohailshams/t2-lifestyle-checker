@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { messageToPatient } from "../utils/utils";
 
 function PatientInput({ patientDbData }) {
@@ -107,7 +107,7 @@ function PatientInput({ patientDbData }) {
 
     const [istrue, message] = messageToPatient(patientInputData, patientDbData);
     if (istrue) {
-      navigate("/questions");
+      navigate("/questions", { state: { age: patientDbData.age } });
     }
     setPatientMessage(message);
     setPatientInputData({
