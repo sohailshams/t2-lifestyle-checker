@@ -27,7 +27,7 @@ Api only handles the GET request and there are only five patients added in the d
 ## Technologies Used
 
 - [Ract JS](https://react.dev/)
-  I chose to complete this project in React because most recently I have been working with React and it is one of the most popular react library. If I did not choose React then other choice was djano.
+  I chose to complete this project in React because most recently I have been working with React and it is one of the most popular react library. If I did not choose React then other choice was django.
 - [Vite JS](https://vitejs.dev/)
   Vite is powerfull tool to create react app and and comes recommended by the [Ract docs](https://react.dev/learn/start-a-new-react-project#can-i-use-react-without-a-framework) which is why I am using it.
 - [Axios](https://axios-http.com/docs/intro)
