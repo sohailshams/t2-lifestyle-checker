@@ -19,11 +19,13 @@ function PatientInput() {
 
   const navigate = useNavigate();
   useEffect(() => {
+    // Check to wait until response came back after api call
     if (!isLoading) {
       const [istrue, message] = messageToPatient(
         patientInputData,
         patientDbData
       );
+      // Check to navigate to /question page only if patient is successfully varified
       if (istrue) {
         navigate("/questions", { state: { age: patientDbData.age } });
       }
@@ -37,6 +39,7 @@ function PatientInput() {
   }, [isLoading]);
 
   const handleChange = (e) => {
+    // NHS number input field only accept numbers, updating initial state and bottom border color
     if (e.target.name === "nhs_number") {
       const nhsNumberEl = document.getElementById("nhs-message");
       const numbersOnly = /^[0-9\b]+$/;
@@ -60,6 +63,7 @@ function PatientInput() {
         nhsNumberEl.classList.add("visible");
       }
     }
+    // surname input field only accept word, updating initial state and bottom border color
     if (e.target.name === "surname") {
       const surnameEl = document.getElementById("surname");
       const words = e.target.value;
@@ -79,6 +83,7 @@ function PatientInput() {
         surnameEl.classList.add("visible");
       }
     }
+    // dob input field only accept jul 14 format, updating initial state and bottom border color
     if (e.target.name === "dob") {
       const dobEl = document.getElementById("dob");
       const dob = e.target.value;
@@ -102,6 +107,7 @@ function PatientInput() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Validate the form fields
     const nhsRequiredEl = document.getElementById("nhs-required");
     const surnameEl = document.getElementById("surname-required");
     const dobEl = document.getElementById("dob-required");
@@ -126,7 +132,7 @@ function PatientInput() {
       dobEl.classList.remove("visible");
       dobEl.classList.add("invisible");
     }
-
+    // api call and updating initial state of patientDbData or patientMessage
     getPatient(parseInt(patientInputData.nhs_number))
       .then((patient) => {
         setIsLoading(false);
