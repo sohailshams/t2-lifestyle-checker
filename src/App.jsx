@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import PatientInput from "./components/PatientInput";
+import PatientInputForm from "./components/PatientInputForm";
 import Nav from "./components/Nav";
 import Questions from "./components/Questions";
 
@@ -9,7 +9,7 @@ function App() {
     <>
       <Nav />
       <Routes>
-        <Route path="/" element={<PatientInput />} />
+        <Route path="/" element={<PatientInputForm />} />
         <Route path="/questions" element={<Questions />} />
       </Routes>
     </>
