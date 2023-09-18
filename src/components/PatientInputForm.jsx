@@ -115,6 +115,7 @@ function PatientInputForm() {
     if (patientInputData.nhs_number === "" || patientInputData.nhs_number < 9) {
       nhsRequiredEl.classList.remove("invisible");
       nhsRequiredEl.classList.add("visible");
+      return false;
     } else {
       nhsRequiredEl.classList.remove("visible");
       nhsRequiredEl.classList.add("invisible");
@@ -122,6 +123,7 @@ function PatientInputForm() {
     if (patientInputData.surname === "") {
       surnameEl.classList.remove("invisible");
       surnameEl.classList.add("visible");
+      return false;
     } else {
       surnameEl.classList.remove("visible");
       surnameEl.classList.add("invisible");
@@ -129,6 +131,7 @@ function PatientInputForm() {
     if (patientInputData.dob === "") {
       dobEl.classList.remove("invisible");
       dobEl.classList.add("visible");
+      return false;
     } else {
       dobEl.classList.remove("visible");
       dobEl.classList.add("invisible");
